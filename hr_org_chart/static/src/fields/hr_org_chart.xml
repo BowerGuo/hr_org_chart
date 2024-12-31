@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="org_chart.org_chart">
+        <div class="o_org_chart_container d-flex">
+            <div class="o_org_chart_list flex-shrink-0">
+                <ul>
+                    <t t-foreach="state.children" t-as="child">
+                        <li>
+                            <span t-on-click="() => this.onRowClicked(child.id)" t-esc="child.display_name" data-id="child.id" />
+                        </li>
+                    </t>
+                </ul>
+            </div>
+            <div class="o_org_chart_form flex-grow-1">
+                <t t-if="state.record_id">
+                    <!-- 渲染当前记录的表单视图 -->
+                    <t t-call="org_chart.orgchart_popover" t-set="record" t-value="state.record_id" />
+                </t>
+            </div>
+        </div>
+    </t>
+</templates>
